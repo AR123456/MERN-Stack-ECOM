@@ -24,11 +24,4 @@ If you would like to take the app for a spin use one of the test users.
 
 ### Sample User Logins
 
-admin@example.com (Admin)
-123456
 
-john@example.com (Customer)
-123456
-
-jane@example.com (Customer)
-123456
