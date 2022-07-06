@@ -13,7 +13,7 @@ const PlaceOrderScreen = ({ history }) => {
 
   const cart = useSelector((state) => state.cart);
 
-  if (!cart.shippingAddress.address) {
+  if (!cart.shippingAddress.street) {
     history.push("/shipping");
   } else if (!cart.paymentMethod) {
     history.push("/payment");
@@ -70,9 +70,9 @@ const PlaceOrderScreen = ({ history }) => {
               <h2>Shipping</h2>
               <p>
                 <strong>Address:</strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city}{" "}
-                {cart.shippingAddress.postalCode},{" "}
-                {cart.shippingAddress.country}
+                {cart.shippingAddress.street}, {cart.shippingAddress.city}{" "}
+                {cart.shippingAddress.state}
+                {cart.shippingAddress.zip}, {cart.shippingAddress.country}
               </p>
             </ListGroup.Item>
 
