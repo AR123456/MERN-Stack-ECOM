@@ -20,8 +20,4 @@
 
 ## Usage
 
-If you would like to take the app for a spin use one of the test users.
-
-### Sample User Logins
-
-Contact me for full demo !
+If you would like to take the app for a spin reach out to me for test users.

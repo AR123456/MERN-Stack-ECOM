@@ -82,10 +82,11 @@ const orderSchema = mongoose.Schema(
     },
   },
   {
+    // created at updated at fields can be created automatically this way
     timestamps: true,
   }
 );
-
+// create a model from this schema
 const Order = mongoose.model("Order", orderSchema);
-
+// export
 export default Order;

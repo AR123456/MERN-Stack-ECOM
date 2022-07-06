@@ -22,6 +22,8 @@ const reviewSchema = mongoose.Schema(
 // still show up in the users order history
 const productSchema = mongoose.Schema(
   {
+    //   which admin user created which product
+    // adding relationship between the product and the user
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
@@ -47,6 +49,7 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    // reviews will be another schema- array of reviewSchema objects
     reviews: [reviewSchema],
     rating: {
       type: Number,
@@ -73,7 +76,7 @@ const productSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-
+// create a model from this schema
 const Product = mongoose.model("Product", productSchema);
 
 export default Product;
