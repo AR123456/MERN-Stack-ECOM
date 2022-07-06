@@ -2,9 +2,11 @@ import mongoose from "mongoose";
 
 const orderSchema = mongoose.Schema(
   {
+    // user associated with this order
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      // reference the user model
       ref: "User",
     },
     orderItems: [
@@ -69,6 +71,7 @@ const orderSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    // date and time paid at
     paidAt: {
       type: Date,
     },
