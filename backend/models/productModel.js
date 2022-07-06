@@ -1,4 +1,7 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
+// this could be in its own model
+//TODO require , pull in date of order on the user
+// IE only users who have purchased and when they purchased as part of the reviews
 
 const reviewSchema = mongoose.Schema(
   {
@@ -8,20 +11,21 @@ const reviewSchema = mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: "User",
     },
   },
   {
     timestamps: true,
   }
-)
-
+);
+// TODO add a field to mark deleted or discontinued to no longer present as avalible to purchase but will
+// still show up in the users order history
 const productSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: "User",
     },
     name: {
       type: String,
@@ -68,8 +72,8 @@ const productSchema = mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
 
-const Product = mongoose.model('Product', productSchema)
+const Product = mongoose.model("Product", productSchema);
 
-export default Product
+export default Product;
