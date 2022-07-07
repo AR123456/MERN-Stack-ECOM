@@ -1,7 +1,4 @@
-import mongoose from "mongoose";
-// this could be in its own model
-//TODO require , pull in date of order on the user
-// IE only users who have purchased and when they purchased as part of the reviews
+import mongoose from 'mongoose'
 
 const reviewSchema = mongoose.Schema(
   {
@@ -11,23 +8,20 @@ const reviewSchema = mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "User",
+      ref: 'User',
     },
   },
   {
     timestamps: true,
   }
-);
-// TODO add a field to mark deleted or discontinued to no longer present as avalible to purchase but will
-// still show up in the users order history
+)
+
 const productSchema = mongoose.Schema(
   {
-    //   which admin user created which product
-    // adding relationship between the product and the user
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "User",
+      ref: 'User',
     },
     name: {
       type: String,
@@ -49,7 +43,6 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    // reviews will be another schema- array of reviewSchema objects
     reviews: [reviewSchema],
     rating: {
       type: Number,
@@ -75,8 +68,8 @@ const productSchema = mongoose.Schema(
   {
     timestamps: true,
   }
-);
-// create a model from this schema
-const Product = mongoose.model("Product", productSchema);
+)
 
-export default Product;
+const Product = mongoose.model('Product', productSchema)
+
+export default Product

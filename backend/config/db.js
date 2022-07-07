@@ -1,20 +1,18 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI, {
-      // TODO verify this, is this still needed ?
       useUnifiedTopology: true,
       useNewUrlParser: true,
       useCreateIndex: true,
-    });
-    // adding some color to console .log
-    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
-  } catch (error) {
-    // adding some color to console .log
-    console.error(`Error: ${error.message}`.red.underline.bold);
-    process.exit(1);
-  }
-};
+    })
 
-export default connectDB;
+    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline)
+  } catch (error) {
+    console.error(`Error: ${error.message}`.red.underline.bold)
+    process.exit(1)
+  }
+}
+
+export default connectDB

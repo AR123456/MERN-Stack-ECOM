@@ -2,11 +2,9 @@ import mongoose from "mongoose";
 
 const orderSchema = mongoose.Schema(
   {
-    // user associated with this order
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      // reference the user model
       ref: "User",
     },
     orderItems: [
@@ -15,7 +13,6 @@ const orderSchema = mongoose.Schema(
         qty: { type: Number, required: true },
         image: { type: String, required: true },
         price: { type: Number, required: true },
-        // product linked product model - order has relationship to product
         product: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
@@ -29,9 +26,6 @@ const orderSchema = mongoose.Schema(
     //   postalCode: { type: String, required: true },
     //   country: { type: String, required: true },
     // },
-    //TODO add a make primary billing address and required automatically pull in as shipping
-    // but allow shipping to be updated and the shippingAddress associated with order, the billing to the user
-    // .
     shippingAddress: {
       street: { type: String, required: true },
       city: { type: String, required: true },
@@ -39,7 +33,6 @@ const orderSchema = mongoose.Schema(
       zip: { type: String, required: true },
       country: { type: String, required: true },
     },
-    //TODO add some other methods, not just paypal
     paymentMethod: {
       type: String,
       required: true,
@@ -50,7 +43,6 @@ const orderSchema = mongoose.Schema(
       update_time: { type: String },
       email_address: { type: String },
     },
-    //TODO should these prices come from or be checked on  backend so they cannot be messed with ?
     taxPrice: {
       type: Number,
       required: true,
@@ -71,7 +63,6 @@ const orderSchema = mongoose.Schema(
       required: true,
       default: false,
     },
-    // date and time paid at
     paidAt: {
       type: Date,
     },
@@ -85,11 +76,10 @@ const orderSchema = mongoose.Schema(
     },
   },
   {
-    // created at updated at fields can be created automatically this way
     timestamps: true,
   }
 );
-// create a model from this schema
+
 const Order = mongoose.model("Order", orderSchema);
-// export
+
 export default Order;
