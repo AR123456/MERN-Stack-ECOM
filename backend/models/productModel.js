@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+// this reviewSchema could have been put into its own file and imported
 // this could be in its own model
 //TODO require , pull in date of order on the user
 // IE only users who have purchased and when they purchased as part of the reviews
