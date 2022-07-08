@@ -9,6 +9,7 @@ const orderSchema = mongoose.Schema(
       // reference the user model
       ref: "User",
     },
+    // array of order items with stuff related to the order
     orderItems: [
       {
         name: { type: String, required: true },
@@ -44,6 +45,7 @@ const orderSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    // this is data coming back from paypal
     paymentResult: {
       id: { type: String },
       status: { type: String },
