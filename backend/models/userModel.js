@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-
+//TODO looking at sendgrid to do passwrod resets
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
