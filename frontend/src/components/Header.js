@@ -23,6 +23,7 @@ const Header = () => {
           <LinkContainer to="/">
             <Navbar.Brand>track pAKs</Navbar.Brand>
           </LinkContainer>
+          {/* TODO serach botton not allinged with search box and companie title  */}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Route render={({ history }) => <SearchBox history={history} />} />
