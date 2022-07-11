@@ -70,10 +70,13 @@ export const createOrder = (order) => async (dispatch, getState) => {
   }
 };
 
+// show the order details
+//pass in the order id
 export const getOrderDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({
       type: ORDER_DETAILS_REQUEST,
+      // need the user info for the token in the header
     });
 
     const {
@@ -82,6 +85,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
 
     const config = {
       headers: {
+        // dont need content type for a get request
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
@@ -90,6 +94,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
 
     dispatch({
       type: ORDER_DETAILS_SUCCESS,
+      // data here is order
       payload: data,
     });
   } catch (error) {
@@ -140,6 +145,7 @@ export const payOrder =
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message;
+      // TODO diff than original code where is this text string set ?
       if (message === "Not authorized, token failed") {
         dispatch(logout());
       }
