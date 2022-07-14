@@ -6,18 +6,20 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import { savePaymentMethod } from "../actions/cartActions";
 
 const PaymentScreen = ({ history }) => {
+  // bringing in shipping address to be able to redirect
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
   if (!shippingAddress.street) {
     history.push("/shipping");
   }
-
+  //   for now setting default to paypal
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
+    //TODO save to user db ?
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
     history.push("/placeorder");
@@ -40,6 +42,7 @@ const PaymentScreen = ({ history }) => {
               checked
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
+            {/* stripe example so scaleable  */}
             {/* <Form.Check
               type='radio'
               label='Stripe'
