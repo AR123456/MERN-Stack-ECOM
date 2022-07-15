@@ -5,24 +5,28 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { createOrder } from "../actions/orderActions";
+// re sets
 import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 import { USER_DETAILS_RESET } from "../constants/userConstants";
-
+// pass in history as prop to use in the orderCreate success
 const PlaceOrderScreen = ({ history }) => {
+  // create dispatch used in createOrder
   const dispatch = useDispatch();
-
+  // get from state
   const cart = useSelector((state) => state.cart);
-
+  //check to see if there is not a shipping address
   if (!cart.shippingAddress.street) {
     history.push("/shipping");
   } else if (!cart.paymentMethod) {
     history.push("/payment");
   }
   //   Calculate prices
+  //TODO look at using the Javascript Internationalzation API to format currency
+  // funtion so we are showing in dollar format
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
   };
-
+  // calculate prices - using redux reducer - which takes in a accumulater and item
   cart.itemsPrice = addDecimals(
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
@@ -33,11 +37,12 @@ const PlaceOrderScreen = ({ history }) => {
     Number(cart.shippingPrice) +
     Number(cart.taxPrice)
   ).toFixed(2);
-
+  //useSelector to handle passing around state
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
 
   useEffect(() => {
+    // if everything went ok push history to redirect
     if (success) {
       history.push(`/order/${order._id}`);
       dispatch({ type: USER_DETAILS_RESET });
@@ -47,6 +52,7 @@ const PlaceOrderScreen = ({ history }) => {
   }, [history, success]);
 
   const placeOrderHandler = () => {
+    // once this is dispatched will be passed down through state
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
@@ -59,7 +65,8 @@ const PlaceOrderScreen = ({ history }) => {
       })
     );
   };
-
+  //TODO depricate what is in stock when someone makes a purchase see Q&A sect 79 for suggestions
+  // TODO see the code in sect 82 Admin Order List Q&A
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
@@ -79,16 +86,21 @@ const PlaceOrderScreen = ({ history }) => {
             <ListGroup.Item>
               <h2>Payment Method</h2>
               <strong>Method: </strong>
+              {/* TODO is there a use case to add payment method to local storage ?  */}
+              {/* TODO look at Q&A sect9, 55 tip on adding to local storage */}
               {cart.paymentMethod}
             </ListGroup.Item>
 
             <ListGroup.Item>
               <h2>Order Items</h2>
+              {/* show what is in cart or that cart is empty  */}
               {cart.cartItems.length === 0 ? (
                 <Message>Your cart is empty</Message>
               ) : (
                 <ListGroup variant="flush">
                   {cart.cartItems.map((item, index) => (
+                    // for each cart item do this and need an index
+                    // TODO this should not be index but item.product see course notes section 9 Q&A pt55
                     <ListGroup.Item key={index}>
                       <Row>
                         <Col md={1}>
