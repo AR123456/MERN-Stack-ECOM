@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { saveShippingAddress } from "../actions/cartActions";
-
+// deconstruct props history when submitting the form want
+// to  redirect or push to payment screen
 const ShippingScreen = ({ history }) => {
+  // fill const with state stuff
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
-
+  // state from forms - if in local storage fill this stuff in
   const [street, setStreet] = useState(shippingAddress.street);
   const [city, setCity] = useState(shippingAddress.city);
   const [state, setState] = useState(shippingAddress.state);
@@ -18,13 +20,19 @@ const ShippingScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
+    //TODO dispatch save shipping address to user db
     e.preventDefault();
+    // dispatch the form data
     dispatch(saveShippingAddress({ street, city, state, zip, country }));
+    // then move to the next page
     history.push("/payment");
   };
 
   return (
     <FormContainer>
+      {/* pass in step we are on and every step before the step we are on  */}
+      {/* This is shipping screen so step 1 and 2  */}
+      {/* TODO this should really be just the step we are on ? */}
       <CheckoutSteps step1 step2 />
       <h1>Shipping</h1>
       <Form onSubmit={submitHandler}>
@@ -34,6 +42,7 @@ const ShippingScreen = ({ history }) => {
             type="text"
             placeholder="Enter Street address"
             value={street}
+            // html5 form validation
             required
             onChange={(e) => setStreet(e.target.value)}
           ></Form.Control>
@@ -45,6 +54,7 @@ const ShippingScreen = ({ history }) => {
             type="text"
             placeholder="Enter city"
             value={city}
+            // html5 form validation
             required
             onChange={(e) => setCity(e.target.value)}
           ></Form.Control>
@@ -56,6 +66,7 @@ const ShippingScreen = ({ history }) => {
             type="text"
             placeholder="Enter state"
             value={state}
+            // html5 form validation
             required
             onChange={(e) => setState(e.target.value)}
           ></Form.Control>
