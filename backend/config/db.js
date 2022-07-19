@@ -9,10 +9,10 @@ const connectDB = async () => {
       useCreateIndex: true,
     });
     // adding some color to console .log
-    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     // adding some color to console .log
-    console.error(`Error: ${error.message}`.red.underline.bold);
+    console.error(`Error: ${error.message}`);
     process.exit(1);
   }
 };
