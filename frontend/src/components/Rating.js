@@ -70,9 +70,11 @@ const Rating = ({ value, text, color }) => {
 // setting the yellow star
 Rating.defaultProps = {
   color: "#f8e825",
+  // also adding default value
+  value: 0,
 };
 // type checking the props dont have to do this but many devs do
-// TODO this was not in final code, should I keep it ?
+// DONE this was not in final code, should I keep it ? - leaving out set defaults including value as per above
 // Rating.propTypes = {
 //   value: PropTypes.number.isRequired,
 //   text: PropTypes.string.isRequired,
