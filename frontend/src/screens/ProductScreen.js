@@ -78,6 +78,7 @@ const ProductScreen = ({ history, match }) => {
   };
 
   return (
+    // DONE fix quantity disapearing at tablet size screen with className="product-page-section"
     <>
       <Link className="btn btn-light my-3" to="/">
         Go Back
@@ -92,10 +93,10 @@ const ProductScreen = ({ history, match }) => {
           this will find the product title */}
           <Meta title={product.name} />
           <Row>
-            <Col md={6}>
+            <Col md={6} className="product-page-section">
               <Image src={product.image} alt={product.name} fluid />
             </Col>
-            <Col md={3}>
+            <Col md={3} className="product-page-section">
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>{product.name}</h3>
@@ -112,13 +113,13 @@ const ProductScreen = ({ history, match }) => {
                 </ListGroup.Item>
               </ListGroup>
             </Col>
-            <Col md={3}>
+            <Col md={3} className="product-page-section">
               <Card>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
                     <Row>
-                      <Col>Price:</Col>
-                      <Col>
+                      <Col className="product-page-section">Price:</Col>
+                      <Col className="product-page-section">
                         <strong>${product.price}</strong>
                       </Col>
                     </Row>
@@ -126,8 +127,8 @@ const ProductScreen = ({ history, match }) => {
 
                   <ListGroup.Item>
                     <Row>
-                      <Col>Status:</Col>
-                      <Col>
+                      <Col className="product-page-section">Status:</Col>
+                      <Col className="product-page-section">
                         {product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
                       </Col>
                     </Row>
@@ -136,8 +137,8 @@ const ProductScreen = ({ history, match }) => {
                   {product.countInStock > 0 && (
                     <ListGroup.Item>
                       <Row>
-                        <Col>Qty</Col>
-                        <Col>
+                        <Col className="product-page-section">Qty</Col>
+                        <Col className="product-page-section">
                           <Form.Control
                             as="select"
                             value={qty}
@@ -172,7 +173,7 @@ const ProductScreen = ({ history, match }) => {
           </Row>
           {/* product review */}
           <Row>
-            <Col md={6}>
+            <Col md={6} className="product-page-section">
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant="flush">
