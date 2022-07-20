@@ -74,7 +74,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     order.isPaid = true;
     order.paidAt = Date.now();
     // this will come from  from paypal payer object
-    //TODO other payment API would be difrent
+    //TODO other payment API would be different
     // set properties
     order.paymentResult = {
       id: req.body.id,
@@ -128,6 +128,7 @@ const getMyOrders = asyncHandler(async (req, res) => {
 // @desc    Get all orders
 // @route   GET /api/orders
 // @access  Private/Admin
+//TODO improve the security of this route by checking if admin or user 10,58 11,69
 const getOrders = asyncHandler(async (req, res) => {
   // return all the orders and use populate to get id and name of the
   // user associated with that order from user collection

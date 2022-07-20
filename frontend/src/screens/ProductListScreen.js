@@ -69,8 +69,8 @@ const ProductListScreen = ({ history, match }) => {
 
   const deleteHandler = (id) => {
     // TODO make a prettier confirm alert
-    // this should really just del the appearance of the product on front end
-    // flagged deleted in the DB
+    // TODO this should really just del the appearance of the product on front end
+    // flagged deleted in the DB 12,75
     if (window.confirm("Are you sure")) {
       dispatch(deleteProduct(id));
     }
