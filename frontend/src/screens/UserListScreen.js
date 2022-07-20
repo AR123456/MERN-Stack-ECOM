@@ -73,6 +73,8 @@ const UserListScreen = ({ history }) => {
                     </Button>
                   </LinkContainer>
                   <Button
+                    // disable this button if the logged in user is an admin so they to not del themselfs
+                    disabled={userInfo._id === user._id}
                     variant="danger"
                     className="btn-sm"
                     onClick={() => deleteHandler(user._id)}
