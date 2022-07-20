@@ -20,7 +20,7 @@ const ShippingScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
-    //TODO dispatch save shipping address to user db
+    //TODO dispatch save shipping address to user db see section 52 Q&A,notes  for advice on this
     e.preventDefault();
     // dispatch the form data
     dispatch(saveShippingAddress({ street, city, state, zip, country }));
@@ -32,8 +32,9 @@ const ShippingScreen = ({ history }) => {
     <FormContainer>
       {/* pass in step we are on and every step before the step we are on  */}
       {/* This is shipping screen so step 1 and 2  */}
-      {/* TODO this should really be just the step we are on ? */}
-      <CheckoutSteps step1 step2 />
+      {/* DONE this should really be just the step we are on ? */}
+      {/* <CheckoutSteps step1 step2 /> */}
+      <CheckoutSteps step2 />
       <h1>Shipping</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="address">

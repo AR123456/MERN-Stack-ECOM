@@ -66,9 +66,7 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
-  // TODO are the todos below taken care of with this updated code
-  // and verify that the removal of payment method is actually happening at log out
-  //TODO remove cart items, shipping address and payment meth
+  //DONE  remove cart items, shipping address and payment meth
   // from local storage Q&A sect 52
   //TODO add the address to UserModel see Q&A sec 52
   // dispatch the logout action
