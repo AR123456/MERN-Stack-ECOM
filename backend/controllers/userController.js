@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generateToken.js";
 import User from "../models/userModel.js";
+//TODO s7, 43 re prd security
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -35,6 +36,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExists) {
     res.status(400);
+    // TODO 8,47 need to not give bad actor clues
     throw new Error("User already exists");
   }
 
@@ -73,6 +75,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
+    //TODO need to not give bad actor clues
     throw new Error("User not found");
   }
 });

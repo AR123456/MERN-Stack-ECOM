@@ -52,7 +52,7 @@ export const login = (email, password) => async (dispatch) => {
       // data we get back from "/api/users/login"
       payload: data,
     });
-
+    //TODO s8,44 look at posibility of using httpOnly/ node
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
@@ -119,11 +119,13 @@ export const register = (name, email, password) => async (dispatch) => {
       type: USER_LOGIN_SUCCESS,
       payload: data,
     });
-
+    // they were successful and we have logged them in, put userInfo in local storage.
+    //TODO encrypt in local storage ?  httpOnly ?  8, 47
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
+      //TODO this message needs to not give bad actors any clues 8, s47 - userControler
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
