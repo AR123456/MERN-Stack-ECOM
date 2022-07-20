@@ -21,7 +21,7 @@ const PlaceOrderScreen = ({ history }) => {
     history.push("/payment");
   }
   //   Calculate prices
-  //TODO look at using the Javascript Internationalzation API to format currency
+  //TODO look at using the Javascript Internationalzation API to format currency s9,55
   // funtion so we are showing in dollar format
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
@@ -100,7 +100,7 @@ const PlaceOrderScreen = ({ history }) => {
                 <ListGroup variant="flush">
                   {cart.cartItems.map((item, index) => (
                     // for each cart item do this and need an index
-                    // TODO this should not be index but item.product see course notes section 9 Q&A pt55
+                    // DONE this should not be index but item.product see course notes section 9 Q&A pt55
                     <ListGroup.Item key={index}>
                       <Row>
                         <Col md={1}>

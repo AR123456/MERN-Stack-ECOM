@@ -43,7 +43,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
 // @desc    Get order by ID
 // @route   GET /api/orders/:id
 // @access  Private
-//TODO improve the security of this route by checking if admin or user sect58 Ch10 Q&A
+//DONE improve the security of this route by checking if admin or user sect58 Ch10 Q&A
 const getOrderById = asyncHandler(async (req, res) => {
   // fetch the order - getting from URL - so params
   // also need the name and user info of the user placing the order .populate()
@@ -52,7 +52,9 @@ const getOrderById = asyncHandler(async (req, res) => {
     "name email"
   );
   // check to see if order exits if not throw error.
-  if (order) {
+  // if (order ) {
+  // check fi the request was from an admin or if the order user id is same as req  user IS
+  if (order && (req.user.isAdmin || order.user._id.equals(req.user._id))) {
     res.json(order);
   } else {
     res.status(404);

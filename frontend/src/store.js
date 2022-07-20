@@ -71,6 +71,8 @@ const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage,
+    // TODO check is payment method persisted is store when page is reloaded, does it need
+    // to be s9,55
   },
   userLogin: { userInfo: userInfoFromStorage },
 };
