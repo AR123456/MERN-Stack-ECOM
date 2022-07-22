@@ -47,7 +47,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       // payload is data that comes back, the newly created order
       payload: data,
     });
-    //TODO note that this is a diff between mine and final sol. Look at this lecture
+    //DONE this clears a users order items our for next user
     dispatch({
       type: CART_CLEAR_ITEMS,
       payload: data,

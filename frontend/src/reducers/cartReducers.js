@@ -3,7 +3,7 @@ import {
   CART_REMOVE_ITEM,
   CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
-  //TODO this is a new Const for clearing cart
+  //DOME this is a new Const for clearing cart
   CART_CLEAR_ITEMS,
 } from "../constants/cartConstants";
 

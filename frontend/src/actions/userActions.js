@@ -66,7 +66,7 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
-  //DONE  remove cart items, shipping address and payment meth
+  //DONE  remove cart items, shipping address and payment meth of currently logging out user
   // from local storage Q&A sect 52
   //TODO add the address to UserModel see Q&A sec 52
   // dispatch the logout action
