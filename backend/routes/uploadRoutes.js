@@ -38,6 +38,7 @@ function checkFileType(file, cb) {
   // path.extname() is a method on the path object, not same as the const extname
   // This returns true or false
   const mimetype = filetypes.test(file.mimetype);
+  // TODO is this the place to check file size ?
 
   if (extname && mimetype) {
     // both true so return callback - pass in in null for error and true
@@ -51,6 +52,9 @@ function checkFileType(file, cb) {
 // passing in as middelware to our route
 const upload = multer({
   storage,
+  // TODO add a check for file size too big s12,80
+  // limits: {dileSize:10}, - but how to get message in front of user if too big ? can this be in the
+  // checkFileType function we wrote ?
   // usemulters fileFilter to validate the type of file is jpg or png
   fileFilter: function (req, file, cb) {
     // this is a custom file checker function from stack overflow -

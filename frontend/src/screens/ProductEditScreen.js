@@ -21,7 +21,7 @@ const ProductEditScreen = ({ match, history }) => {
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
   // file upload state
-  //TODO when I delete a product the image is not removed from uploads folder
+  //TODO when I delete a product the image is not removed from uploads folder,s12
   //TODO the ref to it does get del from the DB, note the image is not being stored
   // in the db it is the url to it on the server.
   const [uploading, setUploading] = useState(false);
