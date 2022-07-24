@@ -222,7 +222,8 @@ const OrderScreen = ({ match, history }) => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (
+              {/* adding check on order user so admin dosent have the paypal button when she is reviewing orders */}
+              {!order.isPaid && order.user === userInfo._id && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
                   {!sdkReady ? (

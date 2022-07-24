@@ -17,7 +17,9 @@ const PaymentScreen = ({ history }) => {
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
 
   const dispatch = useDispatch();
-
+  //TODO if user loggsout before clicking pay button but after entering address the admin can see it as undel and un paid
+  // but when user logs back in the cart has been cleared so the can no longer see the order and pay for it
+  // is there a way to get the unpaid from last time to show up in the cart?  or dont sent it to DB for admin to see?
   const submitHandler = (e) => {
     //TODO save to user db ?
     e.preventDefault();

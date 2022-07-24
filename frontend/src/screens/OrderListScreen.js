@@ -23,7 +23,7 @@ const OrderListScreen = ({ history }) => {
       history.push("/login");
     }
   }, [dispatch, history, userInfo]);
-
+  //TODO add a select box  for admin to see all or paid 12,82
   return (
     <>
       <h1>Orders</h1>
