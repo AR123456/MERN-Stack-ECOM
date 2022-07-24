@@ -10,7 +10,8 @@ const Paginate = ({ pages, page, isAdmin = false, keyword = "" }) => {
   // only return if pages are greater than 1
   return (
     pages > 1 && (
-      // TODO let user decide how many pages to show 13,87
+      // TODO fix bug where admin sees admin product list pageination route when he want to
+      // see the users view list of product patination routes  sect 87 Q&A
       <Pagination>
         {/* map through whatever the number of pages is if it is a keyword search use keyword route
         else use the page route  */}
