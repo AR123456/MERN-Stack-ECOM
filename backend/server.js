@@ -18,10 +18,11 @@ connectDB();
 //  init express to app
 const app = express();
 // running morgan
-//TODO remove from prd app
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
+//TODO remove morgan from prd app
+app.use(morgan("combined"));
+// if (process.env.NODE_ENV === "development") {
+//   // app.use(morgan("dev"));
+// }
 // allow json data
 app.use(express.json());
 //mount routers
