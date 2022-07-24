@@ -49,6 +49,10 @@ const HomeScreen = ({ match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+          {/* Done add message product not found if it is not sec 87 q&A */}
+          {products.length === 0 && (
+            <div>No products found with that keyword</div>
+          )}
           <Row>
             {products.map((product) => (
               <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
@@ -57,7 +61,7 @@ const HomeScreen = ({ match }) => {
             ))}
           </Row>
           {/* pass in pages , keyword if there is on or empty string if no keyword */}
-          {/* TODO add message product not found if it is not sec 87 q&A */}
+
           <Paginate
             pages={pages}
             page={page}
