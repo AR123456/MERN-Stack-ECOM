@@ -202,7 +202,8 @@ export const updateProduct = (product) => async (dispatch, getState) => {
 };
 
 export const createProductReview =
-  //TODO in the end only someone who has purchased a product should be able to review it
+  //TODO in the end only someone who has purchased a product should be able to review it 13,85 Erics code
+  //TODO do not even show the review  to someone who has already reviewed , maybe show "thanks for your reviewo on xxx 13,85"
   (productId, review) => async (dispatch, getState) => {
     try {
       dispatch({
@@ -219,6 +220,7 @@ export const createProductReview =
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
+      // TODO why do I need to refresh page to see updated review, new average ? 13,85
       // not putting into var since only returning a message that we do not care about -pass in review and config
       await axios.post(`/api/products/${productId}/reviews`, review, config);
 
