@@ -15,14 +15,14 @@ const SearchBox = ({ history }) => {
       // no keyword so back to home page
       history.push("/");
     }
-    // TODO clear the search box after search is done  13,87 this is not working
-    setKeyword("");
   };
 
   return (
     <Form onSubmit={submitHandler} inline>
       <Form.Control
-        type="text"
+        // type="text"
+        // DONE clear the search box after search is done offer X button to user, change type from text to search
+        type="search"
         name="q"
         //   e.target.value gets what is in the box
         onChange={(e) => setKeyword(e.target.value)}
