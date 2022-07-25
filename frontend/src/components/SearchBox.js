@@ -15,6 +15,8 @@ const SearchBox = ({ history }) => {
       // no keyword so back to home page
       history.push("/");
     }
+    // TODO clear the search box after search is done  13,87 this is not working
+    setKeyword("");
   };
 
   return (
