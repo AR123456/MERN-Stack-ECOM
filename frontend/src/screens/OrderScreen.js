@@ -93,7 +93,7 @@ const OrderScreen = ({ match, history }) => {
       }
     }
     // TODO from section 83 Mark as Del Q&A
-    // why are history and userInfo not included in the useEffect, if add be sure to test
+    // DONE why are history and userInfo not included in the useEffect, if add be sure to test
   }, [dispatch, orderId, successPay, successDeliver, order]);
   // paymentResult coming from paypal
   const successPaymentHandler = (paymentResult) => {
@@ -104,7 +104,8 @@ const OrderScreen = ({ match, history }) => {
   const deliverHandler = () => {
     dispatch(deliverOrder(order));
   };
-
+  {
+  }
   return loading ? (
     <Loader />
   ) : error ? (
@@ -223,7 +224,11 @@ const OrderScreen = ({ match, history }) => {
                 </Row>
               </ListGroup.Item>
               {/* adding check on order user so admin dosent have the paypal button when she is reviewing orders */}
-              {!order.isPaid && order.user === userInfo._id && (
+              {/* DONE  not this also hid for john user do putting back to orignial code  */}
+              {/* {console.log(`"userinfo id"${userInfo._id}`)}
+              {console.log(`"order user id"${order.user._id}`)}
+              // {!order.isPaid && ( */}
+              {!order.isPaid && order.user._id === userInfo._id && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
                   {!sdkReady ? (
