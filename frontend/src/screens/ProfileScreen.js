@@ -25,6 +25,7 @@ const ProfileScreen = ({ location, history }) => {
   const { userInfo } = userLogin;
   // get success value from the update user profile state
   // to show user message that profile has been updated.
+  // TODO create updated  profile succelffuly message sec15,92
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
   //TODO rename this Users orders  instead of this order list bussiness  order details

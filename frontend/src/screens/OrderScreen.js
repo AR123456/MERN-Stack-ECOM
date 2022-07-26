@@ -104,8 +104,7 @@ const OrderScreen = ({ match, history }) => {
   const deliverHandler = () => {
     dispatch(deliverOrder(order));
   };
-  {
-  }
+  // TODO add ability to cancel an unpaid order 13,92
   return loading ? (
     <Loader />
   ) : error ? (
