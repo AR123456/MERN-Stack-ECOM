@@ -2,12 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
-      // // TODO verify this, is this still needed ? not with v6
-      // useUnifiedTopology: true,
-      // useNewUrlParser: true,
-      // useCreateIndex: true,
-    });
+    const conn = await mongoose.connect(process.env.MONGO_URI, {});
     // adding some color to console .log
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {

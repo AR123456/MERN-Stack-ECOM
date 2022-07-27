@@ -24,15 +24,11 @@ const orderSchema = mongoose.Schema(
         },
       },
     ],
-    // shippingAddress: {
-    //   address: { type: String, required: true },
-    //   city: { type: String, required: true },
-    //   postalCode: { type: String, required: true },
-    //   country: { type: String, required: true },
-    // },
+
     //TODO add a make primary billing address and required automatically pull in as shipping
     // but allow shipping to be updated and the shippingAddress associated with order, the billing to the user
     // .
+    // TODO put this into the user model from the order
     shippingAddress: {
       street: { type: String, required: true },
       city: { type: String, required: true },
