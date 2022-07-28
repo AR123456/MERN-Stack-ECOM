@@ -28,7 +28,8 @@ const orderSchema = mongoose.Schema(
     //TODO add a make primary billing address and required automatically pull in as shipping
     // but allow shipping to be updated and the shippingAddress associated with order, the billing to the user
     // .
-    // TODO put this into the user model from the order
+    // TODO put this into the user model from the order - how are we associating orders with users
+    // now ?
     shippingAddress: {
       street: { type: String, required: true },
       city: { type: String, required: true },

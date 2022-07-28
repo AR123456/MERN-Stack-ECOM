@@ -40,6 +40,7 @@ export const saveShippingAddress = (data) => (dispatch) => {
     type: CART_SAVE_SHIPPING_ADDRESS,
     payload: data,
   });
+
   // in local storage save as shippingAddress
   localStorage.setItem("shippingAddress", JSON.stringify(data));
 };

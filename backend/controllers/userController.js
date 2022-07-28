@@ -72,6 +72,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      // TODO user shippingAddress pulled in from last order
     });
   } else {
     res.status(404);
@@ -94,7 +95,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     if (req.body.password) {
       user.password = req.body.password;
     }
-
+    // TODO user shippingAddress pulled in from last order should be the users addresss and editable here ??
     const updatedUser = await user.save();
     // res similar to login
     res.json({

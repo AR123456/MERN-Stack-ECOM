@@ -7,6 +7,8 @@ import { savePaymentMethod } from "../actions/cartActions";
 
 const PaymentScreen = ({ history }) => {
   // bringing in shipping address to be able to redirect
+  // TODO how about pulling shipping address into local storage from the DB if it is
+  // there from a prior order .
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
@@ -22,6 +24,7 @@ const PaymentScreen = ({ history }) => {
   // is there a way to get the unpaid from last time to show up in the cart?  or dont sent it to DB for admin to see?
   const submitHandler = (e) => {
     //TODO save to user db ?
+    //TODO how about a save user shipping addres to DB here a save addess method
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
     history.push("/placeorder");

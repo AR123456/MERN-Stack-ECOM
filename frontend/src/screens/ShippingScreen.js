@@ -36,6 +36,8 @@ const ShippingScreen = ({ history }) => {
       {/* <CheckoutSteps step1 step2 /> */}
       <CheckoutSteps step2 />
       <h1>Shipping</h1>
+      {/* TODO if this is in local storage we are using it, how about pulling from db off of a prior order 
+      so for each subsequent loggin user will not need to add again but could in they want */}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="address">
           <Form.Label>Street Address</Form.Label>
