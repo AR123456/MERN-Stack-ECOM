@@ -12,7 +12,7 @@ const ShippingScreen = ({ history }) => {
   // fill const with state stuff
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
-  // at this point if shhippingAddress empty get from form
+  // at this point if shhippingAddress empty get from from
   // state from forms - if in local storage fill this stuff in
   const [street, setStreet] = useState(shippingAddress.street);
   const [city, setCity] = useState(shippingAddress.city);

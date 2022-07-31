@@ -14,7 +14,12 @@ const RegisterScreen = ({ location, history }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
-
+  // the primary shipping address will not be in state or local storage for a new user
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
+  const [country, setCountry] = useState("");
   const dispatch = useDispatch();
 
   const userRegister = useSelector((state) => state.userRegister);
@@ -36,7 +41,10 @@ const RegisterScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage("Passwords do not match");
     } else {
-      dispatch(register(name, email, password));
+      // TODO add street,city,state ,zip and country in the register action
+      dispatch(
+        register(name, email, password, street, city, state, zip, country)
+      );
     }
   };
 
@@ -96,7 +104,7 @@ const RegisterScreen = ({ location, history }) => {
             <Form.Control
               type="text"
               placeholder="Enter Street address"
-              // value={street}
+              value={street}
 
               // onChange={(e) => setStreet(e.target.value)}
             ></Form.Control>
@@ -107,7 +115,7 @@ const RegisterScreen = ({ location, history }) => {
             <Form.Control
               type="text"
               placeholder="Enter city"
-              // value={city}
+              value={city}
 
               // onChange={(e) => setCity(e.target.value)}
             ></Form.Control>
@@ -118,7 +126,7 @@ const RegisterScreen = ({ location, history }) => {
             <Form.Control
               type="text"
               placeholder="Enter state"
-              // value={state}
+              value={state}
 
               // onChange={(e) => setState(e.target.value)}
             ></Form.Control>
@@ -129,7 +137,7 @@ const RegisterScreen = ({ location, history }) => {
             <Form.Control
               type="text"
               placeholder="Enter zip code"
-              // value={zip}
+              value={zip}
 
               // onChange={(e) => setZip(e.target.value)}
             ></Form.Control>
@@ -140,7 +148,7 @@ const RegisterScreen = ({ location, history }) => {
             <Form.Control
               type="text"
               placeholder="Enter country"
-              // value={country}
+              value={country}
 
               // onChange={(e) => setCountry(e.target.value)}
             ></Form.Control>
