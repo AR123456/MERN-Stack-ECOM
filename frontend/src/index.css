@@ -60,3 +60,8 @@ h2 {
     margin: 20px 0 0 50%;
   }
 }
+/* add asterick to required field */
+.form-group.required .control-label:after {
+  content: "*";
+  color: red;
+}

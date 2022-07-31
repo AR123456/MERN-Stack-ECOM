@@ -56,37 +56,95 @@ const RegisterScreen = ({ location, history }) => {
             placeholder="Enter name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
 
-        <Form.Group controlId="email">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            // TODO could make  name required on front end but back end is validating too
           ></Form.Control>
-        </Form.Group>
 
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+          <Form.Group controlId="email">
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
 
-        <Form.Group controlId="confirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          ></Form.Control>
+          <Form.Group controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId="confirmPassword">
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Confirm password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+          {/* adding address fields from the shipingScreen  */}
+          {/* TODO this takes up too much room on page and add indicator for required or ot  */}
+          <Form.Group controlId="address">
+            <Form.Label>Street Address</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter Street address"
+              // value={street}
+
+              // onChange={(e) => setStreet(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId="city">
+            <Form.Label>City</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter city"
+              // value={city}
+
+              // onChange={(e) => setCity(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId="state">
+            <Form.Label>State</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter state"
+              // value={state}
+
+              // onChange={(e) => setState(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId="zip">
+            <Form.Label>Zip Code</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter zip code"
+              // value={zip}
+
+              // onChange={(e) => setZip(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId="country">
+            <Form.Label>Country</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter country"
+              // value={country}
+
+              // onChange={(e) => setCountry(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
         </Form.Group>
 
         <Button type="submit" variant="primary">
