@@ -41,7 +41,7 @@ const RegisterScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage("Passwords do not match");
     } else {
-      // TODO add street,city,state ,zip and country in the register action
+      //  add street,city,state ,zip and country in the register action
       dispatch(
         register(name, email, password, street, city, state, zip, country)
       );
@@ -105,8 +105,7 @@ const RegisterScreen = ({ location, history }) => {
               type="text"
               placeholder="Enter Street address"
               value={street}
-
-              // onChange={(e) => setStreet(e.target.value)}
+              onChange={(e) => setStreet(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
@@ -116,8 +115,7 @@ const RegisterScreen = ({ location, history }) => {
               type="text"
               placeholder="Enter city"
               value={city}
-
-              // onChange={(e) => setCity(e.target.value)}
+              onChange={(e) => setCity(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
@@ -127,8 +125,7 @@ const RegisterScreen = ({ location, history }) => {
               type="text"
               placeholder="Enter state"
               value={state}
-
-              // onChange={(e) => setState(e.target.value)}
+              onChange={(e) => setState(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
@@ -138,8 +135,7 @@ const RegisterScreen = ({ location, history }) => {
               type="text"
               placeholder="Enter zip code"
               value={zip}
-
-              // onChange={(e) => setZip(e.target.value)}
+              onChange={(e) => setZip(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
@@ -149,8 +145,7 @@ const RegisterScreen = ({ location, history }) => {
               type="text"
               placeholder="Enter country"
               value={country}
-
-              // onChange={(e) => setCountry(e.target.value)}
+              onChange={(e) => setCountry(e.target.value)}
             ></Form.Control>
           </Form.Group>
         </Form.Group>
