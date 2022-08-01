@@ -30,7 +30,8 @@ const authUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  // adding primary shipping address
+  const { name, email, password, street, city, state, zip, country } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -44,6 +45,12 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password,
+    // adding primary shipping address
+    street,
+    city,
+    state,
+    zip,
+    country,
   });
 
   if (user) {
