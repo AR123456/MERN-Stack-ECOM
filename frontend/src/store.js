@@ -62,8 +62,7 @@ const cartItemsFromStorage = localStorage.getItem("cartItems")
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
-// if there is something in local storage put it into state 9,52
-// if not then retun an empty object
+
 const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
   ? JSON.parse(localStorage.getItem("shippingAddress"))
   : {};
@@ -71,12 +70,10 @@ const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
 const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
-    //  persist the shippingAddress from local storage into state 9,52
     shippingAddress: shippingAddressFromStorage,
     // TODO check is payment method persisted is store when page is reloaded, does it need
     // to be s9,55
   },
-  // note getting userLogin info here from local storage
   userLogin: { userInfo: userInfoFromStorage },
 };
 

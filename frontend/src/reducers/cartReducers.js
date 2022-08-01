@@ -8,8 +8,6 @@ import {
 } from "../constants/cartConstants";
 
 export const cartReducer = (
-  //9,52 8:49
-  // in the reducer pass in the shippingAddress
   state = { cartItems: [], shippingAddress: {} },
   action
 ) => {
@@ -39,8 +37,6 @@ export const cartReducer = (
       };
     case CART_SAVE_SHIPPING_ADDRESS:
       return {
-        // the address from the form being put into state
-        // we also put it into local storage so from store.js
         ...state,
         // payload here is address from form
         shippingAddress: action.payload,

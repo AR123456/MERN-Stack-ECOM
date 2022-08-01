@@ -34,8 +34,6 @@ const addOrderItems = asyncHandler(async (req, res) => {
     // save the order to the DB
     //TODO where is validation that bad actor did not change
     // the prices or num of items or other malicous stuff
-    // TODO when this order is created the shippingAddress needs to become the shipping address in user model
-    
     const createdOrder = await order.save();
 
     res.status(201).json(createdOrder);

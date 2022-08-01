@@ -7,24 +7,20 @@ import { saveShippingAddress } from "../actions/cartActions";
 // deconstruct props history when submitting the form want
 // to  redirect or push to payment screen
 const ShippingScreen = ({ history }) => {
-  //9.52 this const is above getting state from form, if we have stuff in shippingAddress
-  // use it , put it into state here
   // fill const with state stuff
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
-  // at this point if shhippingAddress empty get from from
   // state from forms - if in local storage fill this stuff in
   const [street, setStreet] = useState(shippingAddress.street);
   const [city, setCity] = useState(shippingAddress.city);
   const [state, setState] = useState(shippingAddress.state);
   const [zip, setZip] = useState(shippingAddress.zip);
   const [country, setCountry] = useState(shippingAddress.country);
-  // need to dispatch saveShippingAddress
+
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
-    //TODO dispatch save shipping address to user db if there is not one in state
-    //see section 52 Q&A,notes  for advice on this
+    //TODO dispatch save shipping address to user db see section 52 Q&A,notes  for advice on this
     e.preventDefault();
     // dispatch the form data
     dispatch(saveShippingAddress({ street, city, state, zip, country }));
@@ -40,8 +36,6 @@ const ShippingScreen = ({ history }) => {
       {/* <CheckoutSteps step1 step2 /> */}
       <CheckoutSteps step2 />
       <h1>Shipping</h1>
-      {/* TODO if this is in local storage we are using it, how about pulling from db off of a prior order 
-      so for each subsequent loggin user will not need to add again but could in they want */}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="address">
           <Form.Label>Street Address</Form.Label>
