@@ -87,7 +87,6 @@ export const logout = () => (dispatch) => {
   document.location.href = "/login";
 };
 //TODO implement send grid and or capta for register and resets
-// TODO why is this post not posting ? do I need to del and re seed db?
 export const register =
   (name, email, password, street, city, state, zip, country) =>
   async (dispatch) => {
@@ -105,6 +104,7 @@ export const register =
       const { data } = await axios.post(
         "/api/users",
         // send shipping address too
+
         { name, email, password, street, city, state, zip, country },
         config
       );
