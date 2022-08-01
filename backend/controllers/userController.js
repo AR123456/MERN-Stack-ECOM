@@ -18,6 +18,7 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      // shippingAddress,
       token: generateToken(user._id),
     });
   } else {
@@ -31,7 +32,8 @@ const authUser = asyncHandler(async (req, res) => {
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   // adding primary shipping address
-  const { name, email, password, street, city, state, zip, country } = req.body;
+  // const { name, email, password, street, city, state, zip, country } = req.body;
+  const { name, email, password, shippingAddress } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -46,11 +48,12 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
     // adding primary shipping address
-    street,
-    city,
-    state,
-    zip,
-    country,
+    // street,
+    // city,
+    // state,
+    // zip,
+    // country,
+    shippingAddress,
   });
 
   if (user) {
@@ -59,6 +62,7 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      shippingAddress,
       token: generateToken(user._id),
     });
   } else {
@@ -79,7 +83,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      // TODO user shippingAddress pulled in from last order
+      // TODO use this or user shippingAddress pulled in from last order?
     });
   } else {
     res.status(404);
@@ -110,6 +114,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
+      // TODO ability to update address
       token: generateToken(updatedUser._id),
     });
   } else {
@@ -175,7 +180,9 @@ const updateUser = asyncHandler(async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+
       isAdmin: updatedUser.isAdmin,
+      // TODO update shippingAddress in user model
     });
   } else {
     res.status(404);
