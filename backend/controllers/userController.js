@@ -31,7 +31,7 @@ const authUser = asyncHandler(async (req, res) => {
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   // adding primary shipping address
-  const { name, email, password, street, city, state, zip, country } = req.body;
+  const { name, email, password, shippingAddress } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -40,17 +40,18 @@ const registerUser = asyncHandler(async (req, res) => {
     // TODO 8,47 need to not give bad actor clues
     throw new Error("User already exists");
   }
-
+  //TODO why is the shipping address not being added to db ???
   const user = await User.create({
     name,
     email,
     password,
     // adding primary shipping address
-    street,
-    city,
-    state,
-    zip,
-    country,
+    // street,
+    // city,
+    // state,
+    // zip,
+    // country,
+    shippingAddress,
   });
 
   if (user) {
@@ -59,6 +60,7 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      shippingAddress: user.shippingAddress,
       token: generateToken(user._id),
     });
   } else {
@@ -80,6 +82,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       // TODO user shippingAddress pulled in from last order
+      //shippingAddress:user.shippingAddress,
     });
   } else {
     res.status(404);
@@ -110,6 +113,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
+      // shippingAddress:user.shippingAddress,
       token: generateToken(updatedUser._id),
     });
   } else {
@@ -176,6 +180,7 @@ const updateUser = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
+      //shippingAddress:updateUser.shippingAddress,
     });
   } else {
     res.status(404);

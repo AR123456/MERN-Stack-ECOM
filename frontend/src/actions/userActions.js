@@ -88,8 +88,8 @@ export const logout = () => (dispatch) => {
 };
 //TODO implement send grid and or capta for register and resets
 export const register =
-  (name, email, password, street, city, state, zip, country) =>
-  async (dispatch) => {
+  // (name, email, password, street, city, state, zip, country) =>
+  (name, email, password, shippingAddress) => async (dispatch) => {
     try {
       dispatch({
         type: USER_REGISTER_REQUEST,
@@ -105,7 +105,8 @@ export const register =
         "/api/users",
         // send shipping address too
 
-        { name, email, password, street, city, state, zip, country },
+        // { name, email, password, street, city, state, zip, country },
+        { name, email, password, shippingAddress },
         config
       );
 
