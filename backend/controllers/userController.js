@@ -56,6 +56,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (user) {
     res.status(201).json({
+      // send this to the front end
       _id: user._id,
       name: user.name,
       email: user.email,
