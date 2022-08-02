@@ -26,6 +26,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: false,
     },
+    primaryShippingCity: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,

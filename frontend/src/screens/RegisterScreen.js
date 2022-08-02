@@ -14,6 +14,8 @@ const RegisterScreen = ({ location, history }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
+  const [primaryShippingStreet, setPrimaryShippingStreet] = useState("");
+  const [primaryShippingCity, setPrimaryShippingCity] = useState("");
 
   const dispatch = useDispatch();
 
@@ -36,7 +38,15 @@ const RegisterScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage("Passwords do not match");
     } else {
-      dispatch(register(name, email, password));
+      dispatch(
+        register(
+          name,
+          email,
+          password,
+          primaryShippingStreet,
+          primaryShippingCity
+        )
+      );
     }
   };
 
@@ -86,6 +96,25 @@ const RegisterScreen = ({ location, history }) => {
             placeholder="Confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Form.Group controlId="primaryStreet">
+          <Form.Label>Primary Shipping Street</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Primary Street Address"
+            value={primaryShippingStreet}
+            onChange={(e) => setPrimaryShippingStreet(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        {/*  */}
+        <Form.Group controlId="primaryCity">
+          <Form.Label>Primary Shipping City</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Primary City Address"
+            value={primaryShippingCity}
+            onChange={(e) => setPrimaryShippingCity(e.target.value)}
           ></Form.Control>
         </Form.Group>
 

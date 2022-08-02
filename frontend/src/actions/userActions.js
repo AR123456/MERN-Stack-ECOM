@@ -87,50 +87,51 @@ export const logout = () => (dispatch) => {
   document.location.href = "/login";
 };
 //TODO implement send grid and or capta for register and resets
-export const register = (name, email, password) => async (dispatch) => {
-  try {
-    dispatch({
-      type: USER_REGISTER_REQUEST,
-    });
-    // send in header data with content type of application .json
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+export const register =
+  (name, email, password, primaryShippingStreet,primaryShippingCity) => async (dispatch) => {
+    try {
+      dispatch({
+        type: USER_REGISTER_REQUEST,
+      });
+      // send in header data with content type of application .json
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
-    const { data } = await axios.post(
-      "/api/users",
-      { name, email, password },
-      config
-    );
+      const { data } = await axios.post(
+        "/api/users",
+        { name, email, password, primaryShippingStreet,primaryShippingCity },
+        config
+      );
 
-    dispatch({
-      type: USER_REGISTER_SUCCESS,
-      // data we get back from "/api/users"
-      // ie user data and token
-      payload: data,
-    });
-    // this will also dispatch user login success if
-    // user successfully registers
-    dispatch({
-      type: USER_LOGIN_SUCCESS,
-      payload: data,
-    });
-    // they were successful and we have logged them in, put userInfo in local storage.
-    //TODO encrypt in local storage ?  httpOnly ?  8, 47
-    localStorage.setItem("userInfo", JSON.stringify(data));
-  } catch (error) {
-    dispatch({
-      type: USER_REGISTER_FAIL,
-      //TODO this message needs to not give bad actors any clues 8, s47 - userControler
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+      dispatch({
+        type: USER_REGISTER_SUCCESS,
+        // data we get back from "/api/users"
+        // ie user data and token
+        payload: data,
+      });
+      // this will also dispatch user login success if
+      // user successfully registers
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: data,
+      });
+      // they were successful and we have logged them in, put userInfo in local storage.
+      //TODO encrypt in local storage ?  httpOnly ?  8, 47
+      localStorage.setItem("userInfo", JSON.stringify(data));
+    } catch (error) {
+      dispatch({
+        type: USER_REGISTER_FAIL,
+        //TODO this message needs to not give bad actors any clues 8, s47 - userControler
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const getUserDetails = (id) => async (dispatch, getState) => {
   try {
