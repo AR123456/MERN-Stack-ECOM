@@ -22,6 +22,10 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    primaryShippingStreet: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,
