@@ -88,7 +88,15 @@ export const logout = () => (dispatch) => {
 };
 //TODO implement send grid and or capta for register and resets
 export const register =
-  (name, email, password, primaryShippingStreet,primaryShippingCity) => async (dispatch) => {
+  (
+    name,
+    email,
+    password,
+    primaryShippingStreet,
+    primaryShippingCity,
+    primaryShippingState
+  ) =>
+  async (dispatch) => {
     try {
       dispatch({
         type: USER_REGISTER_REQUEST,
@@ -102,7 +110,14 @@ export const register =
 
       const { data } = await axios.post(
         "/api/users",
-        { name, email, password, primaryShippingStreet,primaryShippingCity },
+        {
+          name,
+          email,
+          password,
+          primaryShippingStreet,
+          primaryShippingCity,
+          primaryShippingState,
+        },
         config
       );
 
