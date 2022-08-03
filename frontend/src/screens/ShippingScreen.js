@@ -4,13 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { saveShippingAddress } from "../actions/cartActions";
+
 // deconstruct props history when submitting the form want
 // to  redirect or push to payment screen
-const ShippingScreen = ({ history }) => {
+const ShippingScreen = ({ history, data }) => {
+  // console.log(localStorage.getItem("userInfo"), JSON.stringify(data));
+
   // fill const with state stuff
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
+  const primary = useSelector((state) => state.userLogin.userInfo);
+  console.log(primary.primaryShippingStreet);
+  console.log(primary.primaryShippingCity);
+  console.log(primary.primaryShippingState);
+  console.log(primary.primaryShippingZip);
   // state from forms - if in local storage fill this stuff in
+  // TODO if no shipping address in local storage use primary
+  // TODO if shipping address is in local storage use that. local storage use that
+
   const [street, setStreet] = useState(shippingAddress.street);
   const [city, setCity] = useState(shippingAddress.city);
   const [state, setState] = useState(shippingAddress.state);

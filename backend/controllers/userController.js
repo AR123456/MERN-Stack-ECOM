@@ -18,6 +18,10 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      primaryShippingStreet: user.primaryShippingStreet,
+      primaryShippingCity: user.primaryShippingCity,
+      primaryShippingState: user.primaryShippingState,
+      primaryShippingZip: user.primaryShippingZip,
       token: generateToken(user._id),
     });
   } else {
@@ -67,7 +71,7 @@ const registerUser = asyncHandler(async (req, res) => {
       primaryShippingStreet: user.primaryShippingStreet,
       primaryShippingCity: user.primaryShippingCity,
       primaryShippingState: user.primaryShippingState,
-      primaryShippingState: user.primaryShippingZip,
+      primaryShippingZip: user.primaryShippingZip,
       token: generateToken(user._id),
     });
   } else {
@@ -88,6 +92,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      //  for updating profile pull shipping in from db
     });
   } else {
     res.status(404);
@@ -118,6 +123,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
+      //TODO for updating user pull in edits to primary shipping
       token: generateToken(updatedUser._id),
     });
   } else {
@@ -184,6 +190,7 @@ const updateUser = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
+      // TODO pull in primary shipping stuff
     });
   } else {
     res.status(404);
