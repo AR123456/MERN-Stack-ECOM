@@ -37,6 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
     primaryShippingStreet,
     primaryShippingCity,
     primaryShippingState,
+    primaryShippingZip,
   } = req.body;
 
   const userExists = await User.findOne({ email });
@@ -54,6 +55,7 @@ const registerUser = asyncHandler(async (req, res) => {
     primaryShippingStreet,
     primaryShippingCity,
     primaryShippingState,
+    primaryShippingZip,
   });
 
   if (user) {
@@ -65,6 +67,7 @@ const registerUser = asyncHandler(async (req, res) => {
       primaryShippingStreet: user.primaryShippingStreet,
       primaryShippingCity: user.primaryShippingCity,
       primaryShippingState: user.primaryShippingState,
+      primaryShippingState: user.primaryShippingZip,
       token: generateToken(user._id),
     });
   } else {

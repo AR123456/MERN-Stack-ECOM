@@ -94,7 +94,8 @@ export const register =
     password,
     primaryShippingStreet,
     primaryShippingCity,
-    primaryShippingState
+    primaryShippingState,
+    primaryShippingZip
   ) =>
   async (dispatch) => {
     try {
@@ -117,6 +118,7 @@ export const register =
           primaryShippingStreet,
           primaryShippingCity,
           primaryShippingState,
+          primaryShippingZip,
         },
         config
       );

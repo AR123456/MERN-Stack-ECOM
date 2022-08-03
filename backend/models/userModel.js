@@ -34,6 +34,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: false,
     },
+    primaryShippingZip: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,

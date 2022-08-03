@@ -17,6 +17,7 @@ const RegisterScreen = ({ location, history }) => {
   const [primaryShippingStreet, setPrimaryShippingStreet] = useState("");
   const [primaryShippingCity, setPrimaryShippingCity] = useState("");
   const [primaryShippingState, setPrimaryShippingState] = useState("");
+  const [primaryShippingZip, setPrimaryShippingZip] = useState("");
 
   const dispatch = useDispatch();
 
@@ -46,7 +47,8 @@ const RegisterScreen = ({ location, history }) => {
           password,
           primaryShippingStreet,
           primaryShippingCity,
-          primaryShippingState
+          primaryShippingState,
+          primaryShippingZip
         )
       );
     }
@@ -126,6 +128,15 @@ const RegisterScreen = ({ location, history }) => {
             placeholder="Primary State Address"
             value={primaryShippingState}
             onChange={(e) => setPrimaryShippingState(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Form.Group controlId="primaryZip">
+          <Form.Label>Primary Shipping Zip</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Primary Zip Code Address"
+            value={primaryShippingZip}
+            onChange={(e) => setPrimaryShippingZip(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
