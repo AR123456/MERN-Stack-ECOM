@@ -22,10 +22,34 @@ const ShippingScreen = ({ history, data }) => {
   // TODO if no shipping address in local storage use primary
   // TODO if shipping address is in local storage use that. local storage use that
 
-  const [street, setStreet] = useState(shippingAddress.street);
-  const [city, setCity] = useState(shippingAddress.city);
-  const [state, setState] = useState(shippingAddress.state);
-  const [zip, setZip] = useState(shippingAddress.zip);
+  const [street, setStreet] = useState(() => {
+    if (!shippingAddress.street) {
+      return primary.primaryShippingStreet;
+    } else {
+      return shippingAddress.street;
+    }
+  });
+  const [city, setCity] = useState(() => {
+    if (!shippingAddress.city) {
+      return primary.primaryShippingCity;
+    } else {
+      return shippingAddress.city;
+    }
+  });
+  const [state, setState] = useState(() => {
+    if (!shippingAddress.state) {
+      return primary.primaryShippingState;
+    } else {
+      return shippingAddress.state;
+    }
+  });
+  const [zip, setZip] = useState(() => {
+    if (!shippingAddress.setZip) {
+      return primary.primaryShippingZip;
+    } else {
+      return shippingAddress.zip;
+    }
+  });
   const [country, setCountry] = useState(shippingAddress.country);
 
   const dispatch = useDispatch();
