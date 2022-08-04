@@ -111,6 +111,11 @@ const OrderScreen = ({ match, history }) => {
     <Message variant="danger">{error}</Message>
   ) : (
     <>
+      {order.user._id !== userInfo._id ? (
+        <Link to="/admin/orderlist">Back Orders List</Link>
+      ) : (
+        <Link to="/profile">Back to Profile</Link>
+      )}
       <h1>Order {order._id}</h1>
       <Row>
         <Col md={8}>

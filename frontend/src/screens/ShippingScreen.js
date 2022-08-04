@@ -14,13 +14,14 @@ const ShippingScreen = ({ history, data }) => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
   const primary = useSelector((state) => state.userLogin.userInfo);
-  console.log(primary.primaryShippingStreet);
-  console.log(primary.primaryShippingCity);
-  console.log(primary.primaryShippingState);
-  console.log(primary.primaryShippingZip);
+
+  // console.log(primary.primaryShippingStreet);
+  // console.log(primary.primaryShippingCity);
+  // console.log(primary.primaryShippingState);
+  // console.log(primary.primaryShippingZip);
   // state from forms - if in local storage fill this stuff in
-  // TODO if no shipping address in local storage use primary
-  // TODO if shipping address is in local storage use that. local storage use that
+  // DONE if no shipping address in local storage use primary
+  // DONE if shipping address is in local storage use that. local storage use that
 
   const [street, setStreet] = useState(() => {
     if (!shippingAddress.street) {
