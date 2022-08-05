@@ -21,7 +21,7 @@ const ProductCarousel = () => {
   ) : error ? (
     <Message variant="danger">{error}</Message>
   ) : (
-    <Carousel pause="hover" className="bg-dark">
+    <Carousel pause="hover">
       {/* create a list of products and for each one create a carousel.item */}
       {/* TODO what is defining a top product here ? */}
       {products.map((product) => (
