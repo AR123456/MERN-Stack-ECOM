@@ -93,6 +93,10 @@ const getUserProfile = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       //  for updating profile pull shipping in from db
+      primaryShippingStreet: user.primaryShippingStreet,
+      primaryShippingCity: user.primaryShippingCity,
+      primaryShippingState: user.primaryShippingState,
+      primaryShippingZip: user.primaryShippingZip,
     });
   } else {
     res.status(404);
@@ -101,7 +105,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Update user profile
+// @desc    Update user profile done by a user
 // @route   PUT /api/users/profile
 // @access  Private
 const updateUserProfile = asyncHandler(async (req, res) => {
@@ -124,6 +128,10 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
       //TODO for updating user pull in edits to primary shipping
+      primaryShippingStreet: updateUser.primaryShippingStreet,
+      primaryShippingCity: updateUser.primaryShippingCity,
+      primaryShippingState: updateUser.primaryShippingState,
+      primaryShippingZip: updateUser.primaryShippingZip,
       token: generateToken(updatedUser._id),
     });
   } else {
@@ -191,6 +199,10 @@ const updateUser = asyncHandler(async (req, res) => {
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
       // TODO pull in primary shipping stuff
+      // primaryShippingStreet: user.primaryShippingStreet,
+      // primaryShippingCity: user.primaryShippingCity,
+      // primaryShippingState: user.primaryShippingState,
+      // primaryShippingZip: user.primaryShippingZip,
     });
   } else {
     res.status(404);
