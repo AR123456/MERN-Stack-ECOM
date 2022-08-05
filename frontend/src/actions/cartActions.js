@@ -32,7 +32,8 @@ export const removeFromCart = (id) => (dispatch, getState) => {
 
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
 };
-
+//TODO  save shipping address action  could this be in its own action.js ?
+// what about option to save to db or pull from db ?
 // data is the form data
 export const saveShippingAddress = (data) => (dispatch) => {
   dispatch({

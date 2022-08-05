@@ -26,7 +26,7 @@ const Header = () => {
           <LinkContainer to="/">
             <Navbar.Brand>track pAKs</Navbar.Brand>
           </LinkContainer>
-
+          {/* TODO serach botton not allinged with search box and companie title  */}
           {/* https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-controls */}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

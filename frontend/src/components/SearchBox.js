@@ -20,7 +20,6 @@ const SearchBox = ({ history }) => {
   return (
     <Form onSubmit={submitHandler} inline>
       <Form.Control
-        // TODO look for way to make search happen as user typing
         // type="text"
         // DONE clear the search box after search is done offer X button to user, change type from text to search
         type="search"

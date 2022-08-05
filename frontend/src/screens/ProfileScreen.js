@@ -15,13 +15,7 @@ const ProfileScreen = ({ location, history }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
-  // adding for updating primaryshipping the user is logged in so pull in what is in state if there.
-  //TODO why is this not updating the db or anything else when submitted
 
-  const [primaryShippingStreet, setPrimaryShippingStreet] = useState("");
-  const [primaryShippingCity, setPrimaryShippingCity] = useState("");
-  const [primaryShippingState, setPrimaryShippingState] = useState("");
-  const [primaryShippingZip, setPrimaryShippingZip] = useState("");
   const dispatch = useDispatch();
 
   const userDetails = useSelector((state) => state.userDetails);
@@ -53,10 +47,6 @@ const ProfileScreen = ({ location, history }) => {
         //using this to fill in the form
         setName(user.name);
         setEmail(user.email);
-        setPrimaryShippingStreet(user.primaryShippingStreet);
-        setPrimaryShippingCity(user.primaryShippingCity);
-        setPrimaryShippingState(user.primaryShippingState);
-        setPrimaryShippingZip(user.primaryShippingZip);
       }
     }
     // add successful profile update to dependancys
@@ -68,18 +58,7 @@ const ProfileScreen = ({ location, history }) => {
       setMessage("Passwords do not match");
     } else {
       // dispatch, pass into the action when form submitted
-      dispatch(
-        updateUserProfile({
-          id: user._id,
-          name,
-          email,
-          password,
-          primaryShippingStreet,
-          primaryShippingCity,
-          primaryShippingState,
-          primaryShippingZip,
-        })
-      );
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
 
@@ -135,44 +114,7 @@ const ProfileScreen = ({ location, history }) => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               ></Form.Control>
             </Form.Group>
-            {/* adding primary address updating  */}
-            <Form.Group controlId="primaryStreet">
-              <Form.Label>Primary Shipping Street</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Primary Street Address"
-                value={primaryShippingStreet}
-                onChange={(e) => setPrimaryShippingStreet(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            {/*  */}
-            <Form.Group controlId="primaryCity">
-              <Form.Label>Primary Shipping City</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Primary City Address"
-                value={primaryShippingCity}
-                onChange={(e) => setPrimaryShippingCity(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="primaryState">
-              <Form.Label>Primary Shipping State</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Primary State Address"
-                value={primaryShippingState}
-                onChange={(e) => setPrimaryShippingState(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="primaryZip">
-              <Form.Label>Primary Shipping Zip</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Primary Zip Code Address"
-                value={primaryShippingZip}
-                onChange={(e) => setPrimaryShippingZip(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+
             <Button type="submit" variant="primary">
               Update
             </Button>
