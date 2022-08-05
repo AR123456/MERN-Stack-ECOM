@@ -7,7 +7,6 @@ import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import { listMyOrders } from "../actions/orderActions";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
-import { set } from "mongoose";
 
 const ProfileScreen = ({ location, history }) => {
   //component level state for form fields
@@ -17,6 +16,8 @@ const ProfileScreen = ({ location, history }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
   // adding for updating primaryshipping the user is logged in so pull in what is in state if there.
+  //TODO why is this not updating the db or anything else when submitted
+
   const [primaryShippingStreet, setPrimaryShippingStreet] = useState("");
   const [primaryShippingCity, setPrimaryShippingCity] = useState("");
   const [primaryShippingState, setPrimaryShippingState] = useState("");
@@ -134,7 +135,44 @@ const ProfileScreen = ({ location, history }) => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               ></Form.Control>
             </Form.Group>
-
+            {/* adding primary address updating  */}
+            <Form.Group controlId="primaryStreet">
+              <Form.Label>Primary Shipping Street</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Primary Street Address"
+                value={primaryShippingStreet}
+                onChange={(e) => setPrimaryShippingStreet(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            {/*  */}
+            <Form.Group controlId="primaryCity">
+              <Form.Label>Primary Shipping City</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Primary City Address"
+                value={primaryShippingCity}
+                onChange={(e) => setPrimaryShippingCity(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="primaryState">
+              <Form.Label>Primary Shipping State</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Primary State Address"
+                value={primaryShippingState}
+                onChange={(e) => setPrimaryShippingState(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="primaryZip">
+              <Form.Label>Primary Shipping Zip</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Primary Zip Code Address"
+                value={primaryShippingZip}
+                onChange={(e) => setPrimaryShippingZip(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
             <Button type="submit" variant="primary">
               Update
             </Button>
