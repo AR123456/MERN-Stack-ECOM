@@ -7,6 +7,7 @@ import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import { listMyOrders } from "../actions/orderActions";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
+import { set } from "mongoose";
 
 const ProfileScreen = ({ location, history }) => {
   //component level state for form fields
@@ -15,7 +16,11 @@ const ProfileScreen = ({ location, history }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
-
+  // adding for updating primaryshipping the user is logged in so pull in what is in state if there.
+  const [primaryShippingStreet, setPrimaryShippingStreet] = useState("");
+  const [primaryShippingCity, setPrimaryShippingCity] = useState("");
+  const [primaryShippingState, setPrimaryShippingState] = useState("");
+  const [primaryShippingZip, setPrimaryShippingZip] = useState("");
   const dispatch = useDispatch();
 
   const userDetails = useSelector((state) => state.userDetails);
@@ -47,6 +52,10 @@ const ProfileScreen = ({ location, history }) => {
         //using this to fill in the form
         setName(user.name);
         setEmail(user.email);
+        setPrimaryShippingStreet(user.primaryShippingStreet);
+        setPrimaryShippingCity(user.primaryShippingCity);
+        setPrimaryShippingState(user.primaryShippingState);
+        setPrimaryShippingZip(user.primaryShippingZip);
       }
     }
     // add successful profile update to dependancys
@@ -58,7 +67,18 @@ const ProfileScreen = ({ location, history }) => {
       setMessage("Passwords do not match");
     } else {
       // dispatch, pass into the action when form submitted
-      dispatch(updateUserProfile({ id: user._id, name, email, password }));
+      dispatch(
+        updateUserProfile({
+          id: user._id,
+          name,
+          email,
+          password,
+          primaryShippingStreet,
+          primaryShippingCity,
+          primaryShippingState,
+          primaryShippingZip,
+        })
+      );
     }
   };
 
