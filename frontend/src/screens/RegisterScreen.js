@@ -8,7 +8,6 @@ import FormContainer from "../components/FormContainer";
 import { register } from "../actions/userActions";
 
 const RegisterScreen = ({ location, history }) => {
-  //component level state for form fields
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,15 +21,13 @@ const RegisterScreen = ({ location, history }) => {
   const dispatch = useDispatch();
 
   const userRegister = useSelector((state) => state.userRegister);
-  //from userRegister need loading,err and userInfo
+
   const { loading, error, userInfo } = userRegister;
-  // does url query search exist, if so turn into array split on = sign, index 1  or go to "/"
+
   const redirect = location.search ? location.search.split("=")[1] : "/";
-  // if already logged in should not go to the register page
+
   useEffect(() => {
-    // it there is user info you ar logged in
     if (userInfo) {
-      // props.history push to redirect
       history.push(redirect);
     }
   }, [history, userInfo, redirect]);
@@ -57,9 +54,9 @@ const RegisterScreen = ({ location, history }) => {
   return (
     <FormContainer>
       <h1>Sign Up</h1>
-      {/* check for register on submit error  */}
+
       {message && <Message variant="danger">{message}</Message>}
-      {/* check for errors loading */}
+
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
@@ -147,7 +144,6 @@ const RegisterScreen = ({ location, history }) => {
 
       <Row className="py-3">
         <Col>
-          {/* redirect or just register */}
           Have an Account?{" "}
           <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
             Login

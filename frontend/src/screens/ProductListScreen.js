@@ -4,7 +4,7 @@ import { Table, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-// for admin to see patination on the product list screen
+
 import Paginate from "../components/Paginate";
 import {
   listProducts,
@@ -14,15 +14,14 @@ import {
 import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
 
 const ProductListScreen = ({ history, match }) => {
-  //  for pagination
   const pageNumber = match.params.pageNumber || 1;
 
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
-  // adding page and pages for pagination
+
   const { loading, error, products, page, pages } = productList;
-  //  get current logged in user info
+
   const productDelete = useSelector((state) => state.productDelete);
   const {
     loading: loadingDelete,
@@ -43,18 +42,14 @@ const ProductListScreen = ({ history, match }) => {
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
-    // check to see if admin
+
     if (!userInfo || !userInfo.isAdmin) {
       history.push("/login");
     }
 
     if (successCreate) {
-      // redirect to the edit products screen
       history.push(`/admin/product/${createdProduct._id}/edit`);
     } else {
-      // for pagination pass in " "" is for key word passing in here as null"
-      //TODO set up key word search for admin on this page, may just have to use
-      // keyword instead of ""
       dispatch(listProducts("", pageNumber));
     }
   }, [
@@ -68,9 +63,6 @@ const ProductListScreen = ({ history, match }) => {
   ]);
 
   const deleteHandler = (id) => {
-    // TODO make a prettier confirm alert
-    // TODO this should really just del the appearance of the product on front end
-    // flagged deleted in the DB 12,75
     if (window.confirm("Are you sure")) {
       dispatch(deleteProduct(id));
     }

@@ -11,80 +11,71 @@ import {
   payOrder,
   deliverOrder,
 } from "../actions/orderActions";
-// importing the order pay reset directly from the consts
+ 
 import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
 } from "../constants/orderConstants";
-// Note all of this is comming from the DB
-//TODO why is order items 0?
-//TODO lots of errors in the address had to reload page for this to work
-//TODO refactor using methond from Q&A lec 60 part to store the item
-//price in DB and pull from there
-// need match to ___ f order id from _____
+ 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
-  // state for handling the sdk from paypal
+ 
   const [sdkReady, setSdkReady] = useState(false);
 
   const dispatch = useDispatch();
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
-  // bring in orderPay action
+ 
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
-  // state for order paid
+ 
   const orderDeliver = useSelector((state) => state.orderDeliver);
   const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
-  // need user info from state to only show button to admin
+ 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  //TODO refactor using methond from Q&A lec 60 part to store the item- pull from db ?
+ 
   if (!loading) {
-    //   Calculate prices
-    //TODO look at using the Javascript Internationalzation API to format currency
-    // funtion so we are showing in dollar format
+ 
     const addDecimals = (num) => {
       return (Math.round(num * 100) / 100).toFixed(2);
     };
-    // calculate prices - using redux reducer - which takes in a accumulater and item
+ 
     order.itemsPrice = addDecimals(
       order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
     );
   }
-  // added from section 61
+ 
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
     }
-    // if user is not logged in redirect to login page
-    //TODO this may be something to do on other pages to not show
-    // them to people who should not see them
+ 
     const addPayPalScript = async () => {
-      // get the client id from server
+   
       const { data: clientId } = await axios.get("/api/config/paypal");
-      // dynamically generate script tag
+    
       const script = document.createElement("script");
       script.type = "text/javascript";
-      // url from paypal
+      
       script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-      // needs to be asyncronis
+  
       script.async = true;
-      //piece of state for when the SDK is ready
+ 
       script.onload = () => {
         setSdkReady(true);
       };
-      // add the script to the body
+ 
       document.body.appendChild(script);
     };
 
     if (!order || successPay || successDeliver || order._id !== orderId) {
-      // stop the refreshing after already paid
+ 
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(getOrderDetails(orderId));
-      // if the order is not paid set the script to true
+ 
     } else if (!order.isPaid) {
       if (!window.paypal) {
         addPayPalScript();
@@ -92,10 +83,9 @@ const OrderScreen = ({ match, history }) => {
         setSdkReady(true);
       }
     }
-    // TODO from section 83 Mark as Del Q&A
-    // DONE why are history and userInfo not included in the useEffect, if add be sure to test
+ 
   }, [dispatch, orderId, successPay, successDeliver, order]);
-  // paymentResult coming from paypal
+ 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult));
@@ -104,7 +94,7 @@ const OrderScreen = ({ match, history }) => {
   const deliverHandler = () => {
     dispatch(deliverOrder(order));
   };
-  // TODO add ability to cancel an unpaid order 13,92
+ 
   return loading ? (
     <Loader />
   ) : error ? (
@@ -122,8 +112,7 @@ const OrderScreen = ({ match, history }) => {
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>Shipping</h2>
-              {/*  pulling user name from order to display here can do this because on back 
-              end we joined useing .populate */}
+   
               <p>
                 <strong>Name: </strong> {order.user.name}
               </p>
@@ -150,8 +139,7 @@ const OrderScreen = ({ match, history }) => {
               <h2>Payment Method</h2>
               <p>
                 <strong>Method: </strong>
-                {/* TODO is there a use case to add payment method to local storage ?  */}
-                {/* TODO look at Q&A sect9, 55 tip on adding to local storage */}
+        
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
@@ -163,14 +151,13 @@ const OrderScreen = ({ match, history }) => {
 
             <ListGroup.Item>
               <h2>Order Items</h2>
-              {/* show what is in order or that order is empty  */}
+        
               {order.orderItems.length === 0 ? (
                 <Message>Order is empty</Message>
               ) : (
                 <ListGroup variant="flush">
                   {order.orderItems.map((item, index) => (
-                    // for each order item do this and need an index
-                    // TODO this should not be index but item.product see course notes section 9 Q&A pt55
+      
                     <ListGroup.Item key={index}>
                       <Row>
                         <Col md={1}>
@@ -227,11 +214,7 @@ const OrderScreen = ({ match, history }) => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {/* adding check on order user so admin dosent have the paypal button when she is reviewing orders */}
-              {/* DONE  not this also hid for john user do putting back to orignial code  */}
-              {/* {console.log(`"userinfo id"${userInfo._id}`)}
-              {console.log(`"order user id"${order.user._id}`)}
-              // {!order.isPaid && ( */}
+         
               {!order.isPaid && order.user._id === userInfo._id && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
@@ -245,7 +228,7 @@ const OrderScreen = ({ match, history }) => {
                   )}
                 </ListGroup.Item>
               )}
-              {/* only admin can see this button and only if order paid and not del yet */}
+        
               {loadingDeliver && <Loader />}
               {userInfo &&
                 userInfo.isAdmin &&

@@ -9,7 +9,6 @@ import { listMyOrders } from "../actions/orderActions";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 
 const ProfileScreen = ({ location, history }) => {
-  //component level state for form fields
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,12 +22,10 @@ const ProfileScreen = ({ location, history }) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  // get success value from the update user profile state
-  // to show user message that profile has been updated.
-  // TODO create updated  profile succelffuly message sec15,92
+
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
-  //TODO rename this Users orders  instead of this order list bussiness  order details
+
   const orderListMy = useSelector((state) => state.orderListMy);
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
@@ -36,28 +33,23 @@ const ProfileScreen = ({ location, history }) => {
     if (!userInfo) {
       history.push("/login");
     } else {
-      //if no user name get user details or if userUpdatedProfile successfully
       if (!user || !user.name || success) {
-        //DONE bug fix lec 90 profile name change update display
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
-        // note this is not really id but profile from userAction.js
+
         dispatch(getUserDetails("profile"));
         dispatch(listMyOrders());
       } else {
-        //using this to fill in the form
         setName(user.name);
         setEmail(user.email);
       }
     }
-    // add successful profile update to dependancys
   }, [dispatch, history, userInfo, user, success]);
-  // submit handler
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setMessage("Passwords do not match");
     } else {
-      // dispatch, pass into the action when form submitted
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };

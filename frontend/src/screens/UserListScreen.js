@@ -27,7 +27,6 @@ const UserListScreen = ({ history }) => {
   }, [dispatch, history, successDelete, userInfo]);
 
   const deleteHandler = (id) => {
-    // TODO make a prettier confirm alert
     if (window.confirm("Are you sure")) {
       dispatch(deleteUser(id));
     }
@@ -73,7 +72,6 @@ const UserListScreen = ({ history }) => {
                     </Button>
                   </LinkContainer>
                   <Button
-                    // disable this button if the logged in user is an admin so they to not del themselfs
                     disabled={userInfo._id === user._id}
                     variant="danger"
                     className="btn-sm"

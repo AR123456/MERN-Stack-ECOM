@@ -19,7 +19,7 @@ const UserEditScreen = ({ match, history }) => {
 
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
-  // need the user update state to know if it is successful
+
   const userUpdate = useSelector((state) => state.userUpdate);
   const {
     loading: loadingUpdate,
@@ -28,17 +28,13 @@ const UserEditScreen = ({ match, history }) => {
   } = userUpdate;
 
   useEffect(() => {
-    // check for success update first
     if (successUpdate) {
-      // reset success and redirect to list screen
       dispatch({ type: USER_UPDATE_RESET });
       history.push("/admin/userlist");
     } else {
-      // user._id is db userId coming from URL
       if (!user.name || user._id !== userId) {
         dispatch(getUserDetails(userId));
       } else {
-        // TODO what could be other safe , meaningful things an administrator would need to edit
         setName(user.name);
         setEmail(user.email);
         setIsAdmin(user.isAdmin);
@@ -59,7 +55,7 @@ const UserEditScreen = ({ match, history }) => {
       <FormContainer>
         <h1>Edit User</h1>
         {loadingUpdate && <Loader />}
-        {/* this would be an error in the put request  */}
+
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading ? (
           <Loader />

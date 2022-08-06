@@ -14,16 +14,15 @@ const OrderListScreen = ({ history }) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  //TODO is this the best way to make sure this is just seen by admin
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listOrders());
     } else {
-      //TODO is this the best place to push back to ?
       history.push("/login");
     }
   }, [dispatch, history, userInfo]);
-  //TODO add a select box  for admin to see all or paid 12,82
+
   return (
     <>
       <h1>Orders</h1>
@@ -66,10 +65,6 @@ const OrderListScreen = ({ history }) => {
                   )}
                 </td>
                 <td>
-                  {/* TODO is this the best place to dir? was `/order/${order._id}` 
-              would need to have an admin order screen but maybe other things admin needs 
-              to see and maybe better security to have a totally diffrent screen 
-              */}
                   <LinkContainer to={`/order/${order._id}`}>
                     <Button variant="light" className="btn-sm">
                       Details

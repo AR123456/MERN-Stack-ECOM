@@ -58,7 +58,7 @@ const CartScreen = ({ match, location, history }) => {
                   </Col>
                   <Col md={2}>${item.price}</Col>
                   <Col md={2}>
-                    {/* TODO need some css help here number selected not showing up  */}
+                
                     <Form.Control
                       as="select"
                       value={item.qty}
@@ -68,8 +68,7 @@ const CartScreen = ({ match, location, history }) => {
                         )
                       }
                     >
-                      {/* spread operator and array constructor takes in product.countInStock  */}
-                      {/* want keys from it so .keys() map  take the iterator x and add 1 for items in stock */}
+           
                       {[...Array(item.countInStock).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
                           {x + 1}

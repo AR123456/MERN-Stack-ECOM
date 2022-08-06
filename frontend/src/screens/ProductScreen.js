@@ -23,7 +23,7 @@ import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
-  // state for the review
+
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
@@ -31,11 +31,10 @@ const ProductScreen = ({ history, match }) => {
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
-  // user must be logged in for product review
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  // for the product review
   const productReviewCreate = useSelector((state) => state.productReviewCreate);
   const {
     success: successProductReview,
@@ -45,22 +44,14 @@ const ProductScreen = ({ history, match }) => {
 
   useEffect(() => {
     if (successProductReview) {
-      //TODO what about this alert ?        alert("Review Submitted!");
       setRating(0);
       setComment("");
-      //TODO what about this reset ?   Was it moved to on logout?
-      //      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
-      // TODO need to add the product review reset on logout
-      // so it dosent persist for the next user lec 85 Q&A
     }
-    // TODO this if is now to this code which break does it fix ?
+
     if (!product._id || product._id !== match.params.id) {
       dispatch(listProductDetails(match.params.id));
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
-    //TODO why is this missing dependancy
-    // TODO lect 89 Q&A ure it has this at the end of the useEffects
-    //[dispatch, match, successProductReview, product, history]
   }, [dispatch, match, successProductReview]);
 
   const addToCartHandler = () => {
@@ -78,7 +69,7 @@ const ProductScreen = ({ history, match }) => {
   };
 
   return (
-    // DONE fix quantity disapearing at tablet size screen with className="product-page-section"
+ 
     <>
       <Link className="btn btn-light my-3" to="/">
         Go Back
@@ -89,8 +80,7 @@ const ProductScreen = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          {/* adding tab title using Helmet housed in Meta , here after products load 
-          this will find the product title */}
+ 
           <Meta title={product.name} />
           <Row>
             <Col md={6} className="product-page-section">
@@ -171,7 +161,7 @@ const ProductScreen = ({ history, match }) => {
               </Card>
             </Col>
           </Row>
-          {/* product review */}
+    
           <Row>
             <Col md={6} className="product-page-section">
               <h2>Reviews</h2>
@@ -185,8 +175,7 @@ const ProductScreen = ({ history, match }) => {
                     <p>{review.comment}</p>
                   </ListGroup.Item>
                 ))}
-                {/* TODO this should not be here should be on user product page lec 85Form to add a review  */}
-                {/* TODO alternative would be leave it here but hide if user has nzot purchased it or if they have already reviewed lect85 */}
+                 
                 <ListGroup.Item>
                   <h2>Write a Customer Review</h2>
                   {successProductReview && (

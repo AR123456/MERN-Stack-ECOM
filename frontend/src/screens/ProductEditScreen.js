@@ -20,10 +20,7 @@ const ProductEditScreen = ({ match, history }) => {
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
-  // file upload state
-  //TODO when I delete a product the image is not removed from uploads folder,s12
-  //TODO the ref to it does get del from the DB, note the image is not being stored
-  // in the db it is the url to it on the server.
+ 
   const [uploading, setUploading] = useState(false);
 
   const dispatch = useDispatch();
@@ -39,13 +36,13 @@ const ProductEditScreen = ({ match, history }) => {
   } = productUpdate;
 
   useEffect(() => {
-    // if the update is successful call the reset
+  
     if (successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
-      // redirect to productlist
+  
       history.push("/admin/productlist");
     } else {
-      //make sure product in url matches what is comming from db
+  
       if (!product.name || product._id !== productId) {
         dispatch(listProductDetails(productId));
       } else {
@@ -61,23 +58,23 @@ const ProductEditScreen = ({ match, history }) => {
   }, [dispatch, history, productId, product, successUpdate]);
 
   const uploadFileHandler = async (e) => {
-    // e.target.files is an array, we are doing one file so first in array
+ 
     const file = e.target.files[0];
-    // initialize a form data object
+ 
     const formData = new FormData();
     formData.append("image", file);
     setUploading(true);
-    // put request in try catch
+ 
     try {
-      // content type must be multipart form data
+ 
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       };
-      // response data
+    
       const { data } = await axios.post("/api/upload", formData, config);
-      // send back the path - in data
+   
       setImage(data);
       setUploading(false);
     } catch (error) {
@@ -88,7 +85,7 @@ const ProductEditScreen = ({ match, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // dispatch the update product action, pass in the form fields
+   
     dispatch(
       updateProduct({
         _id: productId,
