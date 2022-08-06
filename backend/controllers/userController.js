@@ -1,15 +1,13 @@
 import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generateToken.js";
 import User from "../models/userModel.js";
-//TODO s7, 43 re prd security
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
-  // destructue email and password from req.body
   const { email, password } = req.body;
-  // find user attempting login
+
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
@@ -26,7 +24,7 @@ const authUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(401);
-    throw new Error("Invalid email or password");
+    throw new Error("Invalid user data");
   }
 });
 
@@ -48,8 +46,8 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExists) {
     res.status(400);
-    // TODO 8,47 need to not give bad actor clues
-    throw new Error("User already exists");
+
+    throw new Error("Invalid user data");
   }
 
   const user = await User.create({
@@ -92,12 +90,11 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      //  for updating profile pull shipping in from db
     });
   } else {
     res.status(404);
-    //TODO need to not give bad actor clues
-    throw new Error("User not found");
+
+    throw new Error("Invalid user data");
   }
 });
 
@@ -123,12 +120,12 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
-      //TODO for updating user pull in edits to primary shipping
+
       token: generateToken(updatedUser._id),
     });
   } else {
     res.status(404);
-    throw new Error("User not found");
+    throw new Error("Invalid user data");
   }
 });
 
@@ -179,8 +176,7 @@ const updateUser = asyncHandler(async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
-    // user.isAdmin = req.body.isAdmin;
-    //TODO is this best way to solve ? QA 71
+
     user.isAdmin = req.body.isAdmin;
 
     const updatedUser = await user.save();
@@ -190,7 +186,6 @@ const updateUser = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
-      // TODO pull in primary shipping stuff
     });
   } else {
     res.status(404);
