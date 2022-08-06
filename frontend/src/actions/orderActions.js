@@ -21,14 +21,14 @@ import {
   ORDER_DELIVER_REQUEST,
 } from "../constants/orderConstants";
 import { logout } from "./userActions";
-// pass in the order
+ 
 export const createOrder = (order) => async (dispatch, getState) => {
-  //  similar to updateUserProfile
+ 
   try {
     dispatch({
       type: ORDER_CREATE_REQUEST,
     });
-    // need to get the user info
+ 
     const {
       userLogin: { userInfo },
     } = getState();
@@ -39,23 +39,23 @@ export const createOrder = (order) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    // pass in the order object post request
+ 
     const { data } = await axios.post(`/api/orders`, order, config);
 
     dispatch({
       type: ORDER_CREATE_SUCCESS,
-      // payload is data that comes back, the newly created order
+ 
       payload: data,
     });
-    //DONE this clears a users order items our for next user
+ 
     dispatch({
       type: CART_CLEAR_ITEMS,
       payload: data,
     });
-    // have success so clear the cart itmes out of local storage
+ 
     localStorage.removeItem("cartItems");
   } catch (error) {
-    // putting the error message in a const
+ 
     const message =
       error.response && error.response.data.message
         ? error.response.data.message
@@ -70,13 +70,12 @@ export const createOrder = (order) => async (dispatch, getState) => {
   }
 };
 
-// show the order details
-//pass in the order id
+ 
 export const getOrderDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({
       type: ORDER_DETAILS_REQUEST,
-      // need the user info for the token in the header
+    
     });
 
     const {
@@ -85,7 +84,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        // dont need content type for a get request
+ 
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
@@ -94,7 +93,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
 
     dispatch({
       type: ORDER_DETAILS_SUCCESS,
-      // data here is order
+  
       payload: data,
     });
   } catch (error) {
@@ -145,7 +144,7 @@ export const payOrder =
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message;
-      // TODO diff than original code where is this text string set ?
+ 
       if (message === "Not authorized, token failed") {
         dispatch(logout());
       }
