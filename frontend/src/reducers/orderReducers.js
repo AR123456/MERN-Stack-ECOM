@@ -32,10 +32,7 @@ export const orderCreateReducer = (state = {}, action) => {
     case ORDER_CREATE_SUCCESS:
       return {
         loading: false,
-        // TODO from lec 66 bug true needs to be turned off
-        // so that with next new order doesent keep directing user
-        // back to order screen with 1st time orders -
-        //this may have already been fixed another way test..
+
         success: true,
         order: action.payload,
       };
@@ -44,7 +41,7 @@ export const orderCreateReducer = (state = {}, action) => {
         loading: false,
         error: action.payload,
       };
-    // TODO this is not in my original,looks like it fixes bug clearing carts
+
     case ORDER_CREATE_RESET:
       return {};
     default:
@@ -53,7 +50,6 @@ export const orderCreateReducer = (state = {}, action) => {
 };
 
 export const orderDetailsReducer = (
-  // set the initial value as true to avoid trying to load order before loading is true
   state = { loading: true, orderItems: [], shippingAddress: {} },
   action
 ) => {

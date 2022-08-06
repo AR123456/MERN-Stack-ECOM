@@ -3,7 +3,6 @@ import {
   CART_REMOVE_ITEM,
   CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
-  //DOME this is a new Const for clearing cart
   CART_CLEAR_ITEMS,
 } from "../constants/cartConstants";
 
@@ -38,13 +37,13 @@ export const cartReducer = (
     case CART_SAVE_SHIPPING_ADDRESS:
       return {
         ...state,
-        // payload here is address from form
+
         shippingAddress: action.payload,
       };
     case CART_SAVE_PAYMENT_METHOD:
       return {
         ...state,
-        // payload here is payment method
+
         paymentMethod: action.payload,
       };
     case CART_CLEAR_ITEMS:

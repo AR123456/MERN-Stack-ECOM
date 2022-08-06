@@ -42,7 +42,7 @@ export const productListReducer = (state = { products: [] }, action) => {
       return state;
   }
 };
-// TODO look at Wills suggested UX loading improvement s5,29
+
 export const productDetailsReducer = (
   state = { product: { reviews: [] } },
   action
