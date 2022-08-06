@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-// TODO add user billing or primary shipping address updated from order being placed
-// may be ref from order
+
 const userSchema = mongoose.Schema(
   {
     name: {
@@ -43,7 +42,7 @@ const userSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-//TODO looking at sendgrid to do passwrod resets
+
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
