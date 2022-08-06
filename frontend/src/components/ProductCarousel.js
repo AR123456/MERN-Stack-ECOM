@@ -22,8 +22,6 @@ const ProductCarousel = () => {
     <Message variant="danger">{error}</Message>
   ) : (
     <Carousel pause="hover">
-      {/* create a list of products and for each one create a carousel.item */}
-      {/* TODO what is defining a top product here ? */}
       {products.map((product) => (
         <Carousel.Item key={product._id}>
           <Link to={`/product/${product._id}`}>

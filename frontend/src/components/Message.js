@@ -4,8 +4,7 @@ import { Alert } from "react-bootstrap";
 const Message = ({ variant, children }) => {
   return <Alert variant={variant}>{children}</Alert>;
 };
-// set a default for the variant
-//TODO what section is this from
+
 Message.defaultProps = {
   variant: "info",
 };
