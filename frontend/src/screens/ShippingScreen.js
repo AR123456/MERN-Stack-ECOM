@@ -38,14 +38,13 @@ const ShippingScreen = ({ history, data }) => {
       return shippingAddress.zip;
     }
   });
-  const [country, setCountry] = useState(shippingAddress.country);
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    dispatch(saveShippingAddress({ street, city, state, zip, country }));
+    dispatch(saveShippingAddress({ street, city, state, zip }));
 
     history.push("/payment");
   };
@@ -98,16 +97,6 @@ const ShippingScreen = ({ history, data }) => {
             value={zip}
             required
             onChange={(e) => setZip(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-
-        <Form.Group controlId="country">
-          <Form.Label>Country</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
