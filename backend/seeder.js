@@ -12,32 +12,28 @@ import connectDB from "./config/db.js";
 dotenv.config();
 
 connectDB();
-// function to import data and function to destroy data async so put in that with try catch
+
 const importData = async () => {
   // first clear all the collections out completely
   try {
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
-    // now import seeder file and set to const
-    // is connection between products & users want admin user to be the ObjectId (productSchema) for all products createdUsers will be an array
     const createdUsers = await User.insertMany(users);
-    // get the adminUser out to the array
+
     const adminUser = createdUsers[0]._id;
-    // pull in products, map through the products and add admin user to each one
+
     const sampleProducts = products.map((product) => {
-      // for each product return an object with all the stuff that is in the product already and add the admin user
       return { ...product, user: adminUser };
     });
-    //  now add the products to the DB
+
     await Product.insertMany(sampleProducts);
 
     console.log("Data Imported!");
     process.exit();
   } catch (error) {
-    // if something goes wrong log the error
     console.error(`${error}`);
-    // exit the process with error
+
     process.exit(1);
   }
 };

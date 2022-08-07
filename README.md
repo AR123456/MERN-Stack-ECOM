@@ -1,22 +1,23 @@
 # track pAKs eCommerce Platform
 
-> eCommerce platform built with the MERN stack & Redux.
+> eCommerce platform built with the MERN stack & Redux for state management.
 
 ## Features
 
+- Mobile first design
 - Full featured shopping cart
 - Product reviews and ratings
 - Top products carousel
 - Product pagination
 - Product search feature
-- User profile with orders
-- Admin product management
-- Admin user management
-- Admin Order details page
-- Mark orders as delivered option
+- User profile with order detail
 - Checkout process (shipping, payment method, etc)
-- PayPal / credit card integration
-- Database seeder (products & users)
+- PayPal / credit card integration scalable to other integrations
+- Admin Database management
+- Admin product inventory management
+- Admin user management
+- Admin order details page
+- Admin mark orders as delivered option
 
 ## Usage
 

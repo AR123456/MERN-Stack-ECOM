@@ -1,17 +1,9 @@
 import jwt from "jsonwebtoken";
-// taking in id for user id to add to payload in this token
+
 const generateToken = (id) => {
-  // return the jwt.sign() method
-  return jwt.sign(
-    //  pass in ID
-    { id },
-    // secret
-    process.env.JWT_SECRET,
-    // third param to set expiration on token
-    {
-      expiresIn: "30d",
-    }
-  );
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
 };
 
 export default generateToken;

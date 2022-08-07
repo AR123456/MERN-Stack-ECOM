@@ -3,7 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 
 import morgan from "morgan";
-// bring in error handling middleware
+// middleware
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
 //routes
@@ -17,12 +17,7 @@ dotenv.config();
 connectDB();
 //  init express to app
 const app = express();
-// running morgan
-//TODO remove morgan from prd app
-app.use(morgan("combined"));
-// if (process.env.NODE_ENV === "development") {
-//   // app.use(morgan("dev"));
-// }
+
 // allow json data
 app.use(express.json());
 //mount routers
@@ -31,17 +26,12 @@ app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/upload", uploadRoutes);
 //paypal config route
-// when ready to make payment hit this and get the client id
 app.get("/api/config/paypal", (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
-//
-// __dirname points to current dir, but not avalable in ES modules ,only avalable in common js
-// so to mimic this create a var called __dirname and path.resolve
+
 const __dirname = path.resolve();
-//Make uploads a static folder so it can be loaded in the browser
-// need path module in to do this
-// point to uploads folder
+
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 if (process.env.NODE_ENV === "production") {
@@ -55,7 +45,7 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running....");
   });
 }
-// bring in the error handling middleware
+
 app.use(notFound);
 app.use(errorHandler);
 

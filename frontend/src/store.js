@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 // making requests
 import thunk from "redux-thunk";
-// to be able to use the redux dev tools
+//  redux dev tools
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
   productListReducer,
@@ -71,8 +71,6 @@ const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage,
-    // TODO check is payment method persisted is store when page is reloaded, does it need
-    // to be s9,55
   },
   userLogin: { userInfo: userInfoFromStorage },
 };
