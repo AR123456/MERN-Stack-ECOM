@@ -32,7 +32,7 @@ const ShippingScreen = ({ history, data }) => {
     }
   });
   const [zip, setZip] = useState(() => {
-    if (!shippingAddress.setZip) {
+    if (!shippingAddress.zip) {
       return primary.primaryShippingZip;
     } else {
       return shippingAddress.zip;
@@ -107,7 +107,6 @@ const ShippingScreen = ({ history, data }) => {
             type="text"
             placeholder="Enter country"
             value={country}
-            required
             onChange={(e) => setCountry(e.target.value)}
           ></Form.Control>
         </Form.Group>
