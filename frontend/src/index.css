@@ -58,6 +58,16 @@ h2 {
   background-image: url("../public/images/IMG_3338.JPG");
   background-size: cover;
 }
+footer {
+  background-color: #dde3fb;
+}
+.footpic {
+  width: 600px;
+  height: 80px;
+  background-image: url("../public/images/IMG_3343.JPG");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 @media (max-width: 900px) {
   .carousel-caption h2 {
     font-size: 2.5vw;
