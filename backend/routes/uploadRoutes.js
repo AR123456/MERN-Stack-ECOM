@@ -27,14 +27,17 @@ function checkFileType(file, cb) {
   }
 }
 
-const upload = multer({
-  storage,
+//   // limit files size
+//   //https://stackoverflow.com/questions/65156525/handle-multer-filesize-error-when-uploading-large-files
 
+const upload = multer({
+  storage: storage,
+  // for PRD limiting file size
+  limits: { fileSize: 2000000 },
   fileFilter: function (req, file, cb) {
     checkFileType(file, cb);
   },
 });
-
 router.post("/", upload.single("image"), (req, res) => {
   res.send(`/${req.file.path}`);
 });
