@@ -58,6 +58,9 @@ h2 {
   background-image: url("../public/images/IMG_3338.JPG");
   background-size: cover;
 }
+.pagination {
+  padding-left: 45%;
+}
 footer {
   background-color: #dde3fb;
 }
