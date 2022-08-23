@@ -12,7 +12,7 @@
 - Product search feature
 - User profile with order detail
 - Checkout process (shipping, payment method, etc)
-- PayPal / credit card integration scalable to other integrations
+- PayPal API credit card integration scalable to other implementations
 - Admin Database management
 - Admin product inventory management
 - Admin user management
